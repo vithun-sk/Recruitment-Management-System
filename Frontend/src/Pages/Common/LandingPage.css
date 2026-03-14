@@ -1,0 +1,154 @@
+:root {
+    --nav-bg: #334155;
+    --nav-text: #f1f5f9;
+    --body-bg: #f9fafb;
+    --body-text: #1e293b;
+    --brand-accent: #d97706;
+    --brand-accent-hover: #b45309;
+    --card-bg: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+}
+body {
+    background-color: var(--body-bg);
+    color: var(--body-text);
+    scroll-behavior: smooth;
+    width: 100vw;
+}
+
+.navbar h1 {
+    background-color: var(--nav-bg);
+    color: var(--nav-text);
+    padding: 20px;
+    font-size: 35px;
+    margin-bottom: 50px;
+}
+
+.hero-sec,
+.roles-sec,
+.features-sec {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeUp 0.8s ease-out forwards;
+    opacity: 0;
+    
+}
+.hero-sec {
+    animation-delay: 0.3s;
+}
+
+.roles-sec {
+    animation-delay: 0.5s;
+}
+
+.features-sec {
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-sec h2 {
+    font-size: 40px;
+    color: var(--text-primary);
+}
+
+.roles-sec h2,
+.features-sec h2 {
+    font-size: 35px;
+    padding: 10px;
+    color: var(--text-secondary)
+}
+
+.hero-sec p {
+    font-size: 25px;
+    padding: 5px;
+    margin-bottom: 30px;
+    color: var(--text-secondary)
+}
+
+.roles-cards {
+    margin: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    box-shadow: 0px 6px 12px -1px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    border: #e2e8f0 2px solid;
+    padding: 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    transition-duration: 1s;
+    border-color: var(--brand-accent-hover);
+    box-shadow: 4px 4px 4px rgb(234, 88, 12, 0.3);
+}
+
+.card h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: var(--text-primary)
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 20px;
+    text-align: center;
+}
+
+.card .icon {
+    text-align: center;
+    font-size: 32px;
+    margin-right: 10px;
+}
+
+.feature {
+    background-color: white;
+    border: #e2e8f0 2px solid;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    margin: 30px;
+    justify-content: center;
+    width: 80%;
+}
+
+.feature h4 {
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+   color: var(--text-primary);
+}
+
+.feature p {
+    width: 95%;
+    font-size: 18px;
+    text-align: center;
+    color: var(--text-muted)
+}
