@@ -24,7 +24,7 @@ const SignUp = () => {
                                 <input type="radio" name='role' value="CANDIDATE" /> Candidate
                             </label>
                         </div>
-                        <button>Create Account</button>
+                        <button onClick={()=> navigate('/login')}>Create Account</button>
                     </form>
                     <p>Already have an account? <span className='login-page-navi' onClick={() => navigate('/login')}>Login</span></p>
 

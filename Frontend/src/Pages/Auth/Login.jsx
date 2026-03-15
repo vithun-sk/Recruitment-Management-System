@@ -18,7 +18,7 @@ const Login = () => {
             <form action="">
                 <input type="email" placeholder='Email'/>
                 <input type="password" placeholder='Password' />
-                <button >Login</button>
+                <button onClick={()=>navigate('/hr/dashboard')}>Login</button>
             </form>
             <p>Don't have an Account? <span className='signup-page-navi' onClick={()=>navigate('/signup')}>sign up</span></p>
           </section>
