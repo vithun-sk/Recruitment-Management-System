@@ -6,7 +6,10 @@ import "../../Styles/ManageJobs.css";
 
 function ManageJobs() {
 
-  const [jobs, setJobs] = useState(jobsData);
+  const [jobs, setJobs] = useState(() => {
+    const storedJobs = localStorage.getItem("jobs");
+    return storedJobs ? JSON.parse(storedJobs) : jobsData;
+  });
   const [showForm, setShowForm] = useState(false);
   const [newJob, setNewJob] = useState({
     jobtitle: "",
@@ -29,7 +32,14 @@ function ManageJobs() {
 
   const handlePost = (e) => {
     e.preventDefault();
-    setJobs([...jobs, newJob]);
+
+    const updatedJobs = [
+      ...jobs,
+      { ...newJob, job_id: Date.now() }
+    ];
+    setJobs(updatedJobs);
+    localStorage.setItem("jobs", JSON.stringify(updatedJobs));
+
     setShowForm(false);
   };
 
@@ -39,7 +49,7 @@ function ManageJobs() {
       <div className="manageJobs-container">
         <div className="jobs-card">
           {jobs.map((job) => (
-            <JobCard key={job.id} job={job} />
+            <JobCard key={job.job_id} job={job} />
           ))}
         </div>
 
@@ -146,7 +156,7 @@ function ManageJobs() {
                   </tr>
                   <tr>
                     <td>Date</td>
-                    <td><input type="date"  name="created_at" onChange={handleChange} /></td>
+                    <td><input type="date" name="created_at" onChange={handleChange} /></td>
                   </tr>
 
                 </tbody>

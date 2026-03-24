@@ -5,7 +5,7 @@ import CandidateNav from "../../components/CandidateNavbar.jsx";
 import "../../Styles/Showjobs.css";
 
 function ShowJobs() {
-
+    
     const [jobs, setJobs] = useState(jobsData);
     const [showApplyForm, setShowApplyForm] = useState(false);
     const [selectedJob, setSelectedJob] = useState(null);
