@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --nav-bg: #334155;
+    --nav-text: #f1f5f9;
+    --body-bg: #f9fafb;
+    --body-text: #1e293b;
+    --brand-accent: #d97706;
+    --brand-accent-hover: #b45309;
+    --card-bg: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+}
+
+.hr-dashboard {
+    margin: 40px;
+    animation: fadeInPage 0.6s ease-in-out;
+}
+
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.hr-dash-welcome {
+    padding: 20px;
+}
+
+.hr-dash-welcome h1 {
+    padding: 10px;
+    font-size: 45px;
+}
+
+.hr-dash-welcome p {
+    padding: 0px 15px;
+    font-size: 20px;
+}
+
+.hr-dash-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.hr-dash-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--card-bg);
+    box-shadow: 0px 6px 12px -1px rgba(0, 0, 0, 0.08);
+    border: #e2e8f0 2px solid;
+    width: 25%;
+    border-radius: 40px;
+    margin: 10px;
+    border-top: 4px solid var(--brand-accent);
+    
+}
+
+
+
+
+.hr-dash-card-label {
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hr-dash-card-value {
+    font-size: 36px;
+    padding: 10px;
+    font-weight: 800;
+    color: var(--text-secondary);
+}
+
+.hr-dash-card:hover {
+    transform: translateY(-8px);
+    transition-duration: 0.5s;
+}
+
+.hr-dash-intro {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.hr-intro {
+    width: 70%;
+    box-shadow: 0px 6px 12px -1px rgba(0, 0, 0, 0.08);
+    border: #e2e8f0 2px solid;
+    padding: 20px;
+    border-radius: 40px;
+}
+
+.hr-about {
+    font-size: 32px;
+    padding: 20px;
+    font-weight: 600;
+}
+
+.hr-dash-intro p {
+    padding: 10px 20px;
+    font-size: large;
+    color: var(--text-primary);
+}
+
+.hr-features-sec {
+    margin: 0px 15px;
+    background-color: var(--card-bg);
+    box-shadow: 0px 6px 12px -1px rgba(0, 0, 0, 0.08);
+    border: #e2e8f0 2px solid;
+    padding: 20px;
+    border-radius: 40px;
+
+}
+
+.hr-features {
+    list-style: none;
+    font-size: x-large;
+    padding: 10px;
+}
+
+.hr-dash-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 50px;
+}
+
+.hr-button-actions button {
+    margin: 10px 40px;
+    padding: 15px;
+    height: 60px;
+    width: 250px;
+    border-radius: 30px;
+    border: none;
+    font-size: larger;
+    background-color: var(--nav-bg);
+    color: var(--nav-text);
+    cursor: pointer;
+}
+
+.hr-button-actions button:hover {
+    background-color: var(--brand-accent);
+    transform: translateY(-5px);
+    box-shadow: 2px 6px 20px rgba(0, 0, 0, 0.3);
+}
