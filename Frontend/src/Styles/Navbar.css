@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --nav-bg: #334155;
+    --nav-text: #f1f5f9;
+    --body-bg: #f9fafb;
+    --body-text: #1e293b;
+    --brand-accent: #d97706;
+    --brand-accent-hover: #b45309;
+    --card-bg: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+}
+
+.hr-navBar , .candidate-navBar {
+    background-color: var(--nav-bg);
+    color: var(--nav-text);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 75px;
+}
+
+.website-name {
+    margin: 20px 10px 15px 15px;
+    font-size: 18px;
+}
+
+.nav-pages {
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    margin: 20px 10px 15px 15px;
+
+}
+
+.list {
+    font-size: 28px;
+    text-decoration: none;
+    color: var(--nav-text);
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+.list:hover {
+    color: var(--brand-accent-hover);
+}
+
+.list.active span {
+    color: var(--brand-accent);
+}
+
+.list.active::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    background-color: var(--brand-accent);
+    border-radius: 50px;
+    left: 0%;
+    bottom: 0%;
+    width: 100%;
+}
+.nav-profile{
+    margin: 15px 20px 50px 15px;
+}
+.nav-profile:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
