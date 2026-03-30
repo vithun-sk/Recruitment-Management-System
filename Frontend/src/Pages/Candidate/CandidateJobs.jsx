@@ -5,6 +5,7 @@ import CandidateNav from "../../components/CandidateNavbar.jsx";
 import "../../Styles/Showjobs.css";
 
 function ShowJobs() {
+<<<<<<< HEAD
   //all jobs
   const [jobs, setJobs] = useState(() => {
     const storedjobs = localStorage.getItem("jobs");
@@ -33,6 +34,22 @@ function ShowJobs() {
     if (appliedJobs.includes(job.job_id)) {
       alert("You have already applied for this job.");
       return;
+=======
+    
+    const [jobs, setJobs] = useState(jobsData);
+    const [showApplyForm, setShowApplyForm] = useState(false);
+    const [selectedJob, setSelectedJob] = useState(null);
+    const [appliedJobs, setAppliedJobs] = useState([]);
+
+    function handleApply(job) {
+        if (appliedJobs.includes(job.job_id)) {
+            alert("You have already applied for this job.");
+            return;
+        }
+        setSelectedJob(job);
+        setShowApplyForm(true);
+
+>>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
     }
     setSelectedJob(job);
     setShowApplyForm(true);

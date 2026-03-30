@@ -16,12 +16,19 @@ const CandidateNavbar = () => {
                     <NavLink className='list' to='/candidate/jobs' ><span>Browse Jobs</span></NavLink>
                     <NavLink className='list' to='/candidate/jobsApplied' ><span>My Applications</span></NavLink>
                 </div>
+<<<<<<< HEAD
                 <NavLink className='nav-profile' to='/profile'>
                     <img src={profileImage} alt="img" style={{ width: '45px', height: '45px', borderRadius: '50%' }} />
                 </NavLink>
             </nav>
             </>
 
+=======
+                <div className='nav-profile'>
+                    <img src={profileImage} alt="img" style={{ width: '45px', height: '45px', borderRadius: '50%' }} />
+                </div>
+            </nav></>
+>>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
     )
 }
 

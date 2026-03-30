@@ -12,6 +12,13 @@ function ManageJobs() {
     return storedJobs ? JSON.parse(storedJobs) : jobsData;
   });
 
+<<<<<<< HEAD
+=======
+  const [jobs, setJobs] = useState(() => {
+    const storedJobs = localStorage.getItem("jobs");
+    return storedJobs ? JSON.parse(storedJobs) : jobsData;
+  });
+>>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
   const [showForm, setShowForm] = useState(false);
 
   const [newJob, setNewJob] = useState({
@@ -42,7 +49,11 @@ function ManageJobs() {
     ];
     setJobs(updatedJobs);
     localStorage.setItem("jobs", JSON.stringify(updatedJobs));
+<<<<<<< HEAD
     alert("Job Posted Successfully")
+=======
+
+>>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
     setShowForm(false);
   };
 

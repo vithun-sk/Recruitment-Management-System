@@ -1,4 +1,5 @@
 .job-card {
+<<<<<<< HEAD
   width: 320px;
   height: 240px;
   background: #ffffff;
@@ -165,3 +166,173 @@
 .modal-apply-btn:hover {
   background-color: #d97706;
 }
+=======
+    width: 320px;
+    height: 240px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid #d0d7e0b9;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: 0.3s;
+    position: relative;
+    animation: cardSlideUp 0.7s ease forwards;
+}
+@keyframes cardSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.job-card:hover {
+    transform: translateY(-5px);
+}
+
+.role {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.company {
+    color: #555;
+}
+
+.type {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 4px 8px;
+    border-radius: 5px;
+    width: fit-content;
+    font-size: 12px;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.skill-tag {
+    background: #f1f5f9;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.more-info-btn-div {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.info-btn {
+    margin-top: 10px;
+    width: 40%;
+    padding: 8px;
+    border: none;
+    background: #334155;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.info-btn:hover,
+.apply-btn:hover {
+    background-color: #d97706;
+}
+
+.apply-btn {
+    margin-top: 10px;
+    width: 40%;
+    padding: 8px;
+    border: none;
+    background: #334155;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.moreinfo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.job-modal {
+    background: white;
+    width: 700px;
+    height: 500px;
+    padding: 30px;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.modal-content {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 5px;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.jobTitle-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.date {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #4c4c4c;
+}
+
+.modal-apply-btn {
+    margin: 10px 0px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #d97706;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.modal-apply-btn:hover {
+    background-color: #b45309;
+}
+>>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
