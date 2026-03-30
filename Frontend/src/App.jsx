@@ -10,6 +10,7 @@ import JobApplications from "./Pages/HR/JobApplications.jsx";
 import CandidateDashboard from "./Pages/Candidate/CandidateDashboard.jsx";
 import CandidateJobs from "./Pages/Candidate/CandidateJobs.jsx";
 import CandidateJobsApplied from "./Pages/Candidate/JobsApplied.jsx";
+import ProfilePage from './Pages/Common/profilePage.jsx';
 
 
 
@@ -26,6 +27,7 @@ function App () {
         <Route path="/candidate/dashboard" element={<CandidateDashboard />} />        
         <Route path="/candidate/jobs" element={<CandidateJobs />} />        
         <Route path="/candidate/jobsApplied" element={<CandidateJobsApplied />} />        
+        <Route path="/profile" element={<ProfilePage/>} />        
     </Routes>
   )
 }

@@ -5,12 +5,15 @@ import JobCard from "../../components/JobCard.jsx";
 import "../../Styles/ManageJobs.css";
 
 function ManageJobs() {
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
 
   const [jobs, setJobs] = useState(() => {
     const storedJobs = localStorage.getItem("jobs");
     return storedJobs ? JSON.parse(storedJobs) : jobsData;
   });
+
   const [showForm, setShowForm] = useState(false);
+
   const [newJob, setNewJob] = useState({
     jobtitle: "",
     jobdescription: "",
@@ -20,7 +23,7 @@ function ManageJobs() {
     skills_required: "",
     work_mode: "",
     created_at: "",
-    hr_id: 101
+    hr_id: loggedInUser.id
   });
 
   const handleChange = (e) => {
@@ -39,7 +42,7 @@ function ManageJobs() {
     ];
     setJobs(updatedJobs);
     localStorage.setItem("jobs", JSON.stringify(updatedJobs));
-
+    alert("Job Posted Successfully")
     setShowForm(false);
   };
 

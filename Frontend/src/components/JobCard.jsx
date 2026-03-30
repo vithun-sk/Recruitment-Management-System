@@ -38,9 +38,6 @@ function JobCard({ job, showApply = false, onApply , isApplied}) {
 
             </div>
 
-
-            {/* Overlay */}
-
             {showDetails && (
 
                 <div className="moreinfo-overlay">
