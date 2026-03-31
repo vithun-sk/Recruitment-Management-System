@@ -12,7 +12,6 @@ const ProfilePage = () => {
 
   const [editForm, setEditForm] = useState({
     name: loggedInUser?.name || "",
-    email: loggedInUser?.email || "",
     phone: loggedInUser?.phone || "",
     city: loggedInUser?.city || "",
   });
@@ -118,17 +117,7 @@ const ProfilePage = () => {
                     style={{ marginLeft: "170px" }}
                   />
                 </div>
-                <div>
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={editForm.email}
-                    onChange={handleChange}
-                    required
-                    style={{ marginLeft: "170px" }}
-                  />
-                </div>
+              
                 <div>
                   <label>Phone Number</label>
                   <input

@@ -28,7 +28,7 @@ const HrDashBoard = () => {
 
         <section className="cand-dash-cards">
           {stats.map((Card, index) => (
-            <div className="cannd-dash-card">
+            <div className="cand-dash-card">
               <span className="hr-dash-card-label">{Card.label}</span>
               <span className="hr-dash-card-value">{Card.value}</span>
             </div>
