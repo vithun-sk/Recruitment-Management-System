@@ -76,11 +76,11 @@
   width: 650px;
   position: relative;
 }
-.close-btn{
-    top: -30px;
-    right: -50px;
-    font-size: x-large;
-    
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: x-large;
 }
 
 .profile-modal h2 {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./LandingPage.css"
-import { FaBriefcase, FaUserTie, FaUserShield,FaArrowRight } from "react-icons/fa";
+import { FaBriefcase, FaUserTie, FaUserShield } from "react-icons/fa";
 import Footer from '../../components/Footer';
 
 const LandingPage = () => {

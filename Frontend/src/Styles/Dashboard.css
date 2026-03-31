@@ -17,7 +17,7 @@
     --text-muted: #64748b;
 }
 
-.hr-dashboard {
+.hr-dashboard , .cand-dashboard{
     margin: 40px;
     animation: fadeInPage 0.6s ease-in-out;
 }
@@ -35,27 +35,32 @@
 }
 
 
-.hr-dash-welcome {
+.hr-dash-welcome,
+.cand-dash-welcome {
     padding: 20px;
 }
 
-.hr-dash-welcome h1 {
+.hr-dash-welcome h1 ,
+.cand-dash-welcome h1 {
     padding: 10px;
     font-size: 45px;
 }
 
-.hr-dash-welcome p {
+.hr-dash-welcome p ,
+.cand-dash-welcome p {
     padding: 0px 15px;
     font-size: 20px;
 }
 
-.hr-dash-cards {
+.hr-dash-cards ,
+.cand-dash-cards {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-.hr-dash-card {
+.hr-dash-card ,
+.cand-dash-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -74,7 +79,8 @@
 
 
 
-.hr-dash-card-label {
+.hr-dash-card-label ,
+.cand-dash-card-label {
     font-size: 20px;
     padding: 10px;
     font-weight: 600;
@@ -83,25 +89,29 @@
     letter-spacing: 1px;
 }
 
-.hr-dash-card-value {
+.hr-dash-card-value, 
+.cand-dash-card-value {
     font-size: 36px;
     padding: 10px;
     font-weight: 800;
     color: var(--text-secondary);
 }
 
-.hr-dash-card:hover {
+.hr-dash-card:hover ,
+.cand-dash-card:hover {
     transform: translateY(-8px);
     transition-duration: 0.5s;
 }
 
-.hr-dash-intro {
+.hr-dash-intro,
+.cand-dash-intro {
     margin: 10px;
     display: flex;
     flex-direction: row;
 }
 
-.hr-intro {
+.hr-intro ,
+.cand-intro {
     width: 70%;
     box-shadow: 0px 6px 12px -1px rgba(0, 0, 0, 0.08);
     border: #e2e8f0 2px solid;
@@ -109,19 +119,22 @@
     border-radius: 40px;
 }
 
-.hr-about {
+.hr-about ,
+.cand-about {
     font-size: 32px;
     padding: 20px;
     font-weight: 600;
 }
 
-.hr-dash-intro p {
+.hr-dash-intro p ,
+.cand-dash-intro p  {
     padding: 10px 20px;
     font-size: large;
     color: var(--text-primary);
 }
 
-.hr-features-sec {
+.hr-features-sec ,
+.cand-features-sec {
     margin: 0px 15px;
     background-color: var(--card-bg);
     box-shadow: 0px 6px 12px -1px rgba(0, 0, 0, 0.08);
@@ -131,20 +144,23 @@
 
 }
 
-.hr-features {
+.hr-features,
+.cand-features {
     list-style: none;
     font-size: x-large;
     padding: 10px;
 }
 
-.hr-dash-btns {
+.hr-dash-btns,
+.cand-dash-btns {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 30px 50px;
 }
 
-.hr-button-actions button {
+.hr-button-actions button ,
+.cand-button-actions button {
     margin: 10px 40px;
     padding: 15px;
     height: 60px;
@@ -157,8 +173,10 @@
     cursor: pointer;
 }
 
-.hr-button-actions button:hover {
+.hr-button-actions button:hover ,
+.cand-button-actions button:hover {
     background-color: var(--brand-accent);
     transform: translateY(-5px);
+    transition-duration: 0.5s;
     box-shadow: 2px 6px 20px rgba(0, 0, 0, 0.3);
 }
