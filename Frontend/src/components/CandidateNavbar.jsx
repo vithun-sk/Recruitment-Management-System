@@ -15,7 +15,6 @@ const CandidateNavbar = () => {
         </div>
         <div className="nav-pages">
           <NavLink className="list" to="/candidate/dashboard">
-            {" "}
             <span>Dashboard</span>
           </NavLink>
           <NavLink className="list" to="/candidate/jobs">
