@@ -5,8 +5,6 @@ import CandidateNav from "../../components/CandidateNavbar.jsx";
 import "../../Styles/Showjobs.css";
 
 function ShowJobs() {
-<<<<<<< HEAD
-  //all jobs
   const [jobs, setJobs] = useState(() => {
     const storedjobs = localStorage.getItem("jobs");
     return storedjobs ? JSON.parse(storedjobs) : jobsData;
@@ -20,36 +18,20 @@ function ShowJobs() {
     projects: "",
     resume: "",
   });
-  //user info
+
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  //all
-  const allAppliactions =
+
+  const allApplications =
     JSON.parse(localStorage.getItem("applications")) || [];
-  //my app
-  const appliedJobs = allAppliactions
+
+  const appliedJobs = allApplications
     .filter((a) => a.candidate_email === loggedInUser?.email)
     .map((a) => a.job_id);
-  // checking
+
   function handleApply(job) {
     if (appliedJobs.includes(job.job_id)) {
       alert("You have already applied for this job.");
       return;
-=======
-    
-    const [jobs, setJobs] = useState(jobsData);
-    const [showApplyForm, setShowApplyForm] = useState(false);
-    const [selectedJob, setSelectedJob] = useState(null);
-    const [appliedJobs, setAppliedJobs] = useState([]);
-
-    function handleApply(job) {
-        if (appliedJobs.includes(job.job_id)) {
-            alert("You have already applied for this job.");
-            return;
-        }
-        setSelectedJob(job);
-        setShowApplyForm(true);
-
->>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
     }
     setSelectedJob(job);
     setShowApplyForm(true);
@@ -60,9 +42,11 @@ function ShowJobs() {
     setSelectedJob(null);
     setApplyForm({ whyHire: "", startDate: "", projects: "", resume: "" });
   }
+
   function handleFormchange(e) {
     setApplyForm({ ...applyForm, [e.target.name]: e.target.value });
   }
+
   function handleSubmit(e) {
     e.preventDefault();
     const newApplication = {
@@ -81,9 +65,9 @@ function ShowJobs() {
       status: "Applied",
     };
 
-    const exisitingApp = JSON.parse(localStorage.getItem("applications")) || [];
-    exisitingApp.push(newApplication);
-    localStorage.setItem("applications", JSON.stringify(exisitingApp));
+    const existingApp = JSON.parse(localStorage.getItem("applications")) || [];
+    existingApp.push(newApplication);
+    localStorage.setItem("applications", JSON.stringify(existingApp));
     alert("Application submitted successfully!");
     closeApplyForm();
   }

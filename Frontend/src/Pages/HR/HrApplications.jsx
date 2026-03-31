@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
-=======
-import React from "react";
->>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
 import { useNavigate } from "react-router-dom";
 import HrNav from "../../components/HrNavbar";
 import "../../Styles/HrApplications.css";
 import { jobsData } from "../../assets/Data";
-<<<<<<< HEAD
+
 
 const HrApplications = () => {
   const navigate = useNavigate();
@@ -34,18 +30,6 @@ const HrApplications = () => {
 
   function getApplicationCount(jobId) {
     return applicationData.filter((app) => app.job_id === jobId).length;
-=======
-import { applicationsData } from "../../assets/ApplicationsData";
-
-const HrApplications = () => {
-
-  const navigate = useNavigate();
-  const hrId = 101;
-  const storedJobs = JSON.parse(localStorage.getItem("jobs")) || jobsData;
-  const hrJobs = storedJobs.filter(job => job.hr_id === hrId);
-  function getApplicationCount(jobId) {
-    return applicationsData.filter(app => app.job_id === jobId).length;
->>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
   }
 
   return (
@@ -53,7 +37,6 @@ const HrApplications = () => {
       <HrNav />
       <div className="applications-page">
         <h1>Your Jobs</h1>
-<<<<<<< HEAD
         {hrJobs.length === 0 ? (
           <div className="noJobsPosted-hr">
             <p>You haven't posted any jobs yet!</p>
@@ -95,44 +78,12 @@ const HrApplications = () => {
             </tbody>
           </table>
         )}
-=======
-        <table className="applications-table" >
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Job Role</th>
-              <th>Applications</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {hrJobs.map(job => (
 
-              <tr key={job.job_id}>
-                <td>{job.company_name}</td>
-                <td>{job.jobtitle}</td>
-                <td>{getApplicationCount(job.job_id)}</td>
-
-                <td>
-                  <button
-                    className="view-btn"
-                    onClick={() => navigate(`/hr/applications/${job.job_id}`)}
-                  >
-                    View
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
->>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
       </div>
     </>
   );
 };
 
-<<<<<<< HEAD
 export default HrApplications;
-=======
-export default HrApplications;
->>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
+
+

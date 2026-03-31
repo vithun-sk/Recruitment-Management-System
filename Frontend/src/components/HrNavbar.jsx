@@ -16,15 +16,9 @@ const HrNavbar = () => {
                     <NavLink className='list' to='/hr/jobs' ><span>Manage Jobs</span></NavLink>
                     <NavLink className='list' to='/hr/applications' ><span>Applications</span></NavLink>
                 </div>
-<<<<<<< HEAD
                 <NavLink className='nav-profile' to='/profile'>
                     <img src={profileImage} alt="img" style={{ width: '45px', height: '45px', borderRadius: '50%' }} />
                 </NavLink>
-=======
-                <div className='nav-profile'>
-                    <img src={profileImage} alt="img" style={{ width: '45px', height: '45px', borderRadius: '50%' }} />
-                </div>
->>>>>>> febabfa7e6703aca8db2108dfeecc25d0d05a008
             </nav>
 
         </>
