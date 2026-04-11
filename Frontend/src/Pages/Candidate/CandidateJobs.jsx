@@ -1,77 +1,82 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import JobCard from "../../components/JobCard.jsx";
-import { jobsData } from "../../assets/Data.js";
 import CandidateNav from "../../components/CandidateNavbar.jsx";
 import "../../Styles/Showjobs.css";
-
+import { getAllJobs, applyForJob, getMyApplications } from "../../Services/api";
+ 
 function ShowJobs() {
-  const [jobs, setJobs] = useState(() => {
-    const storedjobs = localStorage.getItem("jobs");
-    return storedjobs ? JSON.parse(storedjobs) : jobsData;
-  });
-
+  const [jobs, setJobs] = useState([]);
+  const [appliedJobIds, setAppliedJobIds] = useState([]);
   const [showApplyForm, setShowApplyForm] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
   const [applyForm, setApplyForm] = useState({
     whyHire: "",
     startDate: "",
     projects: "",
-    resume: "",
+    resume: null,
   });
-
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-  const allApplications =
-    JSON.parse(localStorage.getItem("applications")) || [];
-
-  const appliedJobs = allApplications
-    .filter((a) => a.candidate_email === loggedInUser?.email)
-    .map((a) => a.job_id);
-
+  const [loading, setLoading] = useState(false);
+ 
+  useEffect(() => {
+    // Fetch all jobs
+    getAllJobs()
+      .then((res) => setJobs(res.data))
+      .catch(() => alert("Failed to load jobs."));
+ 
+    // Fetch already applied job IDs
+    getMyApplications()
+      .then((res) => {
+        // We need job_ids — fetch from applications
+        // Since getMyApplications returns joined data with job info,
+        // we store appli_id + job info, so let's track by job title + company for now
+        // Better: fetch applied job_ids separately
+        setAppliedJobIds(res.data.map((a) => a.job_id));
+      })
+      .catch(() => {});
+  }, []);
+ 
   function handleApply(job) {
-    if (appliedJobs.includes(job.job_id)) {
+    if (appliedJobIds.includes(job.job_id)) {
       alert("You have already applied for this job.");
       return;
     }
     setSelectedJob(job);
     setShowApplyForm(true);
   }
-
+ 
   function closeApplyForm() {
     setShowApplyForm(false);
     setSelectedJob(null);
-    setApplyForm({ whyHire: "", startDate: "", projects: "", resume: "" });
+    setApplyForm({ whyHire: "", startDate: "", projects: "", resume: null });
   }
-
-  function handleFormchange(e) {
+ 
+  function handleFormChange(e) {
     setApplyForm({ ...applyForm, [e.target.name]: e.target.value });
   }
-
-  function handleSubmit(e) {
+ 
+  async function handleSubmit(e) {
     e.preventDefault();
-    const newApplication = {
-      application_id: Date.now(),
-      job_id: selectedJob.job_id,
-      hr_id: selectedJob.hr_id,
-      jobtitle: selectedJob.jobtitle,
-      company_name: selectedJob.company_name,
-      candidate_name: loggedInUser.name,
-      candidate_email: loggedInUser.email,
-      applied_date: new Date().toLocaleDateString(),
-      whyHire: applyForm.whyHire,
-      startDate: applyForm.startDate,
-      projects: applyForm.projects,
-      resume: applyForm.resume,
-      status: "Applied",
-    };
-
-    const existingApp = JSON.parse(localStorage.getItem("applications")) || [];
-    existingApp.push(newApplication);
-    localStorage.setItem("applications", JSON.stringify(existingApp));
-    alert("Application submitted successfully!");
-    closeApplyForm();
+    setLoading(true);
+ 
+    const formData = new FormData();
+    formData.append("job_id", selectedJob.job_id);
+    formData.append("why_should_hire", applyForm.whyHire);
+    formData.append("briefly_describe_your_project", applyForm.projects);
+    formData.append("when_you_join", applyForm.startDate);
+    formData.append("resume", applyForm.resume);
+ 
+    try {
+      await applyForJob(formData);
+      alert("Application submitted successfully!");
+      setAppliedJobIds([...appliedJobIds, selectedJob.job_id]);
+      closeApplyForm();
+    } catch (err) {
+      alert(err.response?.data?.message || "Application failed.");
+    } finally {
+      setLoading(false);
+    }
   }
-
+ 
   return (
     <>
       <CandidateNav />
@@ -84,58 +89,39 @@ function ShowJobs() {
               job={job}
               showApply={true}
               onApply={handleApply}
-              isApplied={appliedJobs.includes(job.job_id)}
+              isApplied={appliedJobIds.includes(job.job_id)}
             />
           ))}
         </div>
       </div>
-
+ 
       {showApplyForm && (
         <div className="apply-overlay">
           <div className="apply-modal">
-            <button className="close-btn" onClick={closeApplyForm}>
-              ✖
-            </button>
-
+            <button className="close-btn" onClick={closeApplyForm}>✖</button>
             <h2>Apply for {selectedJob.jobtitle}</h2>
             <h3>{selectedJob.company_name}</h3>
-
             <form className="apply-form" onSubmit={handleSubmit}>
               <label>Why should we hire you?</label>
-              <textarea
-                name="whyHire"
-                required
-                onChange={handleFormchange}
-              ></textarea>
-
+              <textarea name="whyHire" required onChange={handleFormChange}></textarea>
+ 
               <label>When can you start?</label>
-              <input
-                name="startDate"
-                required
-                type="text"
-                onChange={handleFormchange}
-              />
-
+              <input name="startDate" type="date" required onChange={handleFormChange} />
+ 
               <label>Briefly describe about your projects</label>
-              <textarea
-                name="projects"
-                required
-                onChange={handleFormchange}
-              ></textarea>
-
-              <label>Upload Resume</label>
+              <textarea name="projects" required onChange={handleFormChange}></textarea>
+ 
+              <label>Upload Resume (PDF)</label>
               <input
                 required
                 type="file"
-                onChange={(e) =>
-                  setApplyForm({
-                    ...applyForm,
-                    resume: e.target.files[0]?.name || "",
-                  })
-                }
+                accept=".pdf,.doc,.docx"
+                onChange={(e) => setApplyForm({ ...applyForm, resume: e.target.files[0] })}
               />
-
-              <button className="submit-btn">Submit Application</button>
+ 
+              <button className="submit-btn" disabled={loading}>
+                {loading ? "Submitting..." : "Submit Application"}
+              </button>
             </form>
           </div>
         </div>
@@ -143,5 +129,5 @@ function ShowJobs() {
     </>
   );
 }
-
+ 
 export default ShowJobs;

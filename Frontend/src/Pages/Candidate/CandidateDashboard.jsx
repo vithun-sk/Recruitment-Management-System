@@ -1,77 +1,70 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CandidateNav from "../../components/CandidateNavbar.jsx";
 import Footer from "../../components/Footer";
 import "../../Styles/Dashboard.css";
 import { useNavigate } from "react-router-dom";
-
-const HrDashBoard = () => {
+import { getMyApplications, getAllJobs } from "../../Services/api";
+ 
+const CandidateDashBoard = () => {
   const navigate = useNavigate();
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  const allApps = JSON.parse(localStorage.getItem("applications")) || [];
-  const myAppsCount = allApps.filter(
-    (a) => a.candidate_email === loggedInUser?.email,
-  ).length;
-
+  const [myAppsCount, setMyAppsCount] = useState(0);
+  const [totalJobs, setTotalJobs] = useState(0);
+ 
+  useEffect(() => {
+    getMyApplications()
+      .then((res) => setMyAppsCount(res.data.length))
+      .catch(() => {});
+ 
+    getAllJobs()
+      .then((res) => setTotalJobs(res.data.length))
+      .catch(() => {});
+  }, []);
+ 
   const stats = [
-    { label: "Total Jobs in Portal ", value: "1023" },
-    { label: "Candidates Hired ", value: "800" },
+    { label: "Total Jobs in Portal", value: totalJobs },
+    { label: "Candidates Hired", value: "800" },
     { label: "Jobs You Applied", value: myAppsCount },
   ];
+ 
   return (
     <>
       <CandidateNav />
       <div className="cand-dashboard">
         <section className="cand-dash-welcome">
-          <h1>Welcome Candidate!</h1>
+          <h1>Welcome, {loggedInUser?.name}!</h1>
           <p>Explore new opportunities tailored for your skills.</p>
         </section>
-
         <section className="cand-dash-cards">
           {stats.map((Card, index) => (
-            <div className="cand-dash-card">
+            <div className="cand-dash-card" key={index}>
               <span className="hr-dash-card-label">{Card.label}</span>
               <span className="hr-dash-card-value">{Card.value}</span>
             </div>
           ))}
         </section>
-
         <section className="cand-dash-btns">
           <div className="cand-button-actions">
-            <button
-              className="postJob-btn"
-              onClick={() => navigate("/candidate/jobs")}
-            >
+            <button className="postJob-btn" onClick={() => navigate("/candidate/jobs")}>
               Browse All Jobs
             </button>
-            <button
-              className="reviewApp-btn"
-              onClick={() => navigate("/candidate/jobsApplied")}
-            >
+            <button className="reviewApp-btn" onClick={() => navigate("/candidate/jobsApplied")}>
               My Applications
             </button>
           </div>
         </section>
-
         <section>
-          <h2 className="cand-about">
-            About Recruit<i style={{ color: "#d97706" }}>Hub</i>
-          </h2>
+          <h2 className="cand-about">About Recruit<i style={{ color: "#d97706" }}>Hub</i></h2>
           <div className="cand-dash-intro">
             <article className="cand-intro">
               <p>
-                RecruitHub is designed to put the power back in your hands. We
-                bridge the gap between your unique skills and top-tier employers
-                by offering a <strong>centralized hub</strong> for your
-                professional growth. No more guessing—manage every application,
-                follow-up, and offer in one unified space.
+                RecruitHub is designed to put the power back in your hands. We bridge the gap between
+                your unique skills and top-tier employers by offering a <strong>centralized hub</strong> for
+                your professional growth.
               </p>
-
               <p>
-                Our <strong>Live Application Tracking</strong> removes the
-                "black hole" of the job hunt. You will receive instant
-                transparency as your profile moves through the pipeline. From
-                the moment you click apply to the final interview stage, you
-                stay informed with real-time status updates and direct feedback.
+                Our <strong>Live Application Tracking</strong> removes the "black hole" of the job hunt.
+                You will receive instant transparency as your profile moves through the pipeline.
               </p>
             </article>
             <article className="cand-features-sec">
@@ -89,5 +82,5 @@ const HrDashBoard = () => {
     </>
   );
 };
-
-export default HrDashBoard;
+ 
+export default CandidateDashBoard;

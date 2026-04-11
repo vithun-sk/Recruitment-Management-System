@@ -1,0 +1,74 @@
+/* Admin Job Card Wrapper */
+.admin-job-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-delete-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #b91c1c;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.admin-delete-btn:hover {
+  background-color: #ef4444;
+  transform: translateY(-3px);
+}
+
+/* Filter Buttons */
+.admin-filter-btns {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  justify-content: center;
+}
+
+.admin-filter-btn {
+  padding: 10px 25px;
+  border: 2px solid #334155;
+  background: white;
+  color: #334155;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.admin-filter-btn:hover {
+  background: #334155;
+  color: white;
+}
+
+.admin-filter-btn.active {
+  background: #334155;
+  color: white;
+}
+
+/* Role Badges */
+.admin-role-badge {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge-hr {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.badge-candidate {
+  background: #e0f2fe;
+  color: #0284c7;
+}

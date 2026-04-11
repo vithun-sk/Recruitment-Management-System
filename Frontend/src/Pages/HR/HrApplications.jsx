@@ -1,37 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import HrNav from "../../components/HrNavbar";
 import "../../Styles/HrApplications.css";
-import { jobsData } from "../../assets/Data";
-
-
+import { getMyJobs, deleteJob } from "../../Services/api";
+import { getApplicationsByJob } from "../../Services/api";
+ 
 const HrApplications = () => {
   const navigate = useNavigate();
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-  const applicationData =
-    JSON.parse(localStorage.getItem("applications")) || [];
-
-  const [storedJobs , setStoredJobs] = useState(()=>{
-    return JSON.parse(localStorage.getItem("jobs")) || jobsData;
-  })
-
-  const hrJobs = storedJobs.filter((job) => job.hr_id === loggedInUser?.id);
-
-  function handleDeleteJob(jobId) {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this job?",
-    );
+  const [hrJobs, setHrJobs] = useState([]);
+  const [appCounts, setAppCounts] = useState({});
+ 
+  useEffect(() => {
+    getMyJobs()
+      .then(async (res) => {
+        setHrJobs(res.data);
+        // Get application count for each job
+        const counts = {};
+        for (const job of res.data) {
+          try {
+            const appRes = await getApplicationsByJob(job.job_id);
+            counts[job.job_id] = appRes.data.length;
+          } catch {
+            counts[job.job_id] = 0;
+          }
+        }
+        setAppCounts(counts);
+      })
+      .catch(() => alert("Failed to load jobs."));
+  }, []);
+ 
+  async function handleDeleteJob(job_id) {
+    const confirmed = window.confirm("Are you sure you want to delete this job?");
     if (!confirmed) return;
-    const updatedJobs = storedJobs.filter((job) => job.job_id !== jobId);
-    localStorage.setItem("jobs", JSON.stringify(updatedJobs));
-    setStoredJobs(updatedJobs)
+    try {
+      await deleteJob(job_id);
+      setHrJobs(hrJobs.filter((job) => job.job_id !== job_id));
+      alert("Job deleted successfully!");
+    } catch (err) {
+      alert(err.response?.data?.message || "Delete failed.");
+    }
   }
-
-  function getApplicationCount(jobId) {
-    return applicationData.filter((app) => app.job_id === jobId).length;
-  }
-
+ 
   return (
     <>
       <HrNav />
@@ -51,25 +60,17 @@ const HrApplications = () => {
                 <th>Action</th>
               </tr>
             </thead>
-
-            <tbody className="jobs-posted">
+            <tbody>
               {hrJobs.map((job) => (
                 <tr key={job.job_id}>
                   <td>{job.company_name}</td>
                   <td>{job.jobtitle}</td>
-                  <td>{getApplicationCount(job.job_id)}</td>
-
+                  <td>{appCounts[job.job_id] ?? 0}</td>
                   <td>
-                    <button
-                      className="view-btn"
-                      onClick={() => navigate(`/hr/applications/${job.job_id}`)}
-                    >
+                    <button className="view-btn" onClick={() => navigate(`/hr/applications/${job.job_id}`)}>
                       View
                     </button>
-                    <button
-                      className="deleteJob-btn"
-                      onClick={() => handleDeleteJob(job.job_id)}
-                    >
+                    <button className="deleteJob-btn" onClick={() => handleDeleteJob(job.job_id)}>
                       Delete Job
                     </button>
                   </td>
@@ -78,12 +79,9 @@ const HrApplications = () => {
             </tbody>
           </table>
         )}
-
       </div>
     </>
   );
 };
-
+ 
 export default HrApplications;
-
-
