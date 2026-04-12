@@ -4,20 +4,18 @@ import JobCard from "../../components/JobCard";
 import "../../Styles/Showjobs.css";
 import "../../Styles/Admin.css";
 import { adminGetAllJobs, adminDeleteJob } from "../../Services/api";
-
+ 
 const AdminJobs = () => {
   const [jobs, setJobs] = useState([]);
-
+ 
   useEffect(() => {
     adminGetAllJobs()
       .then((res) => setJobs(res.data))
       .catch(() => alert("Failed to load jobs."));
   }, []);
-
+ 
   async function handleDelete(job_id) {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this job?",
-    );
+    const confirmed = window.confirm("Are you sure you want to delete this job?");
     if (!confirmed) return;
     try {
       await adminDeleteJob(job_id);
@@ -27,37 +25,31 @@ const AdminJobs = () => {
       alert("Failed to delete job.");
     }
   }
-
+ 
   return (
     <>
       <AdminNavbar />
       <div className="jobs-page">
         <h1 className="page-title">
           All Jobs{" "}
-          <span
-            style={{ fontSize: "18px", color: "#64748b", fontWeight: "400" }}
-          >
+          <span style={{ fontSize: "18px", color: "#64748b", fontWeight: "400" }}>
             ({jobs.length} total)
           </span>
         </h1>
         <div className="jobs-container">
           {jobs.length === 0 ? (
-            <p
-              style={{ fontSize: "24px", color: "#6b7280", marginTop: "100px" }}
-            >
+            <p style={{ fontSize: "24px", color: "#6b7280", marginTop: "100px" }}>
               No jobs found.
             </p>
           ) : (
             jobs.map((job) => (
-              <div key={job.job_id} className="admin-job-wrapper">
-                <JobCard job={job} showApply={false} />
-                <button
-                  className="admin-delete-btn"
-                  onClick={() => handleDelete(job.job_id)}
-                >
-                  🗑 Delete Job
-                </button>
-              </div>
+              <JobCard
+                key={job.job_id}
+                job={job}
+                showApply={false}
+                showDelete={true}
+                onDelete={handleDelete}
+              />
             ))
           )}
         </div>
@@ -65,5 +57,5 @@ const AdminJobs = () => {
     </>
   );
 };
-
+ 
 export default AdminJobs;

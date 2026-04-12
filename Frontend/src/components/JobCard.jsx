@@ -1,13 +1,12 @@
 import "../Styles/JobCard.css";
 import { useState } from "react";
-
-function JobCard({ job, showApply = false, onApply , isApplied}) {
-
+ 
+function JobCard({ job, showApply = false, onApply, isApplied, showDelete = false, onDelete }) {
+ 
     const [showDetails, setShowDetails] = useState(false);
-
+ 
     return (
         <>
-
             <div className="job-card">
                 <h3 className="role">{job.jobtitle}</h3>
                 <p className="company">{job.company_name}</p>
@@ -34,12 +33,19 @@ function JobCard({ job, showApply = false, onApply , isApplied}) {
                             {isApplied ? "Applied" : "Apply"}
                         </button>
                     )}
+                    {showDelete && (
+                        <button
+                            className="delete-btn"
+                            
+                            onClick={() => onDelete(job.job_id)}
+                        >
+                            Delete
+                        </button>
+                    )}
                 </div>
-
             </div>
-
+ 
             {showDetails && (
-
                 <div className="moreinfo-overlay">
                     <div className="job-modal">
                         <button
@@ -50,9 +56,7 @@ function JobCard({ job, showApply = false, onApply , isApplied}) {
                         </button>
                         <div className="jobTitle-date">
                             <h1>{job.jobtitle}</h1>
-                            <p className="date">
-                                Posted on: {job.created_at}
-                            </p>
+                            <p className="date">Posted on: {job.created_at}</p>
                         </div>
                         <div className="modal-content">
                             <h2>{job.company_name}</h2>
@@ -67,22 +71,29 @@ function JobCard({ job, showApply = false, onApply , isApplied}) {
                                     className="modal-apply-btn"
                                     onClick={() => {
                                         onApply(job);
-                                        setShowDetails(false)
+                                        setShowDetails(false);
                                     }}
-
                                 >
                                     {isApplied ? "Already applied for this job" : "Apply"}
-                                </button>)}
+                                </button>
+                            )}
+                            {showDelete && (
+                                <button
+                                    className="modal-delete-btn"
+                                    onClick={() => {
+                                        onDelete(job.job_id);
+                                        setShowDetails(false);
+                                    }}
+                                >
+                                    Delete This Job
+                                </button>
+                            )}
                         </div>
-
                     </div>
-
-                </div >
-
-            )
-            }
+                </div>
+            )}
         </>
     );
 }
-
+ 
 export default JobCard;
