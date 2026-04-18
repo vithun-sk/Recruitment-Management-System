@@ -17,7 +17,7 @@
     --text-muted: #64748b;
 }
 
-.hr-navBar , .candidate-navBar {
+.hr-navBar , .candidate-navBar ,.admin-navBar {
     background-color: var(--nav-bg);
     color: var(--nav-text);
     display: flex;
@@ -69,6 +69,20 @@
     margin: 15px 20px 50px 15px;
 }
 .nav-profile:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+.admin-nav-profile{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 20px 50px 15px;
+    background-color: rgb(245, 57, 57);
+}
+.admin-nav-profile:hover{
     opacity: 0.7;
     cursor: pointer;
 }
