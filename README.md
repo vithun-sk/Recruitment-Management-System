@@ -158,6 +158,9 @@ Feel free to fork this repo and submit a pull request.
 
 **Vithun S K**
 Frontend Web Developer | Full Stack Learner
+
 📧 Email: [vithunkumar07@gmail.com](mailto:vithunkumar07@gmail.com)
+
 🔗 LinkedIn: [https://www.linkedin.com/in/vithun-sk/](https://www.linkedin.com/in/vithun-sk/)
+
 🐙 GitHub: [https://github.com/vithun-sk](https://github.com/vithun-sk)
