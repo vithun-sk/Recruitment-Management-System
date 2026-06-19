@@ -11,7 +11,7 @@ import CandidateDashboard from "./Pages/Candidate/CandidateDashboard.jsx";
 import CandidateJobs from "./Pages/Candidate/CandidateJobs.jsx";
 import CandidateJobsApplied from "./Pages/Candidate/JobsApplied.jsx";
 import ProfilePage from './Pages/Common/ProfilePage.jsx';
-import AdminDashboard from './Pages/Admin/AdmindashBoard.jsx';
+import AdminDashboard from './Pages/Admin/AdminDashBoard.jsx';
 import AdminJobs from './Pages/Admin/Adminjobs.jsx';
 import AdminUsers from './Pages/Admin/Adminusers.jsx';
  
