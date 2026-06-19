@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AdminNavbar from "../../components/AdminNavbar";
+import AdminNavbar from "../../components/Adminnavbar";
 import JobCard from "../../components/JobCard";
 import "../../Styles/Showjobs.css";
 import "../../Styles/Admin.css";

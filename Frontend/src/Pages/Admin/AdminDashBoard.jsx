@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AdminNavbar from "../../components/AdminNavbar";
+import AdminNavbar from "../../components/Adminnavbar";
 import Footer from "../../components/Footer";
 import "../../Styles/Dashboard.css";
 import { adminGetAllUsers, adminGetAllJobs } from "../../Services/api";
