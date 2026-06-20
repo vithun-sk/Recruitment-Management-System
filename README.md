@@ -6,7 +6,7 @@ RecruitHub is a full-stack web application designed to solve real-world problems
 
 ## 🚀 Live Demo
 
-🔗 **[View Project](#)** *(Coming Soon)*
+🔗 **[View Project](https://recruitment-management-system-eosin.vercel.app/)** 
 
 ---
 
