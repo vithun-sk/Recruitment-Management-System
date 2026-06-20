@@ -2,6 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 require("dotenv").config();
+const fs = require("fs");
+
+console.log("Uploads folder exists:", fs.existsSync("uploads"));
+
+if (fs.existsSync("uploads")) {
+  console.log("Files inside uploads:");
+  console.log(fs.readdirSync("uploads"));
+}
  
 const app = express();
  
