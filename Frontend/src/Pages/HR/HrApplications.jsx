@@ -3,35 +3,19 @@ import { useNavigate } from "react-router-dom";
 import HrNav from "../../components/HrNavbar";
 import "../../Styles/HrApplications.css";
 import { getMyJobs, deleteJob } from "../../Services/api";
-import { getApplicationsByJob } from "../../Services/api";
+
 
 const HrApplications = () => {
   const navigate = useNavigate();
   const [hrJobs, setHrJobs] = useState([]);
-  const [appCounts, setAppCounts] = useState({});
 
-  useEffect(() => {
-    getMyJobs()
-      .then(async (res) => {
-        setHrJobs(res.data);
-        // Get application count for each job
-        const counts = {};
-        for (const job of res.data) {
-          try {
-            const appRes = await getApplicationsByJob(job.job_id);
-            counts[job.job_id] = appRes.data.length;
-          } catch (err) {
-            console.log("Error for job", job.job_id);
-            console.log(err.response?.data);
-            console.log(err.response?.status);
-
-            counts[job.job_id] = 0;
-          }
-        }
-        setAppCounts(counts);
-      })
-      .catch(() => alert("Failed to load jobs."));
-  }, []);
+useEffect(() => {
+  getMyJobs()
+    .then((res) => {
+      setHrJobs(res.data);
+    })
+    .catch(() => alert("Failed to load jobs."));
+}, []);
 
   async function handleDeleteJob(job_id) {
     const confirmed = window.confirm(
@@ -71,7 +55,7 @@ const HrApplications = () => {
                 <tr key={job.job_id}>
                   <td>{job.company_name}</td>
                   <td>{job.jobtitle}</td>
-                  <td>{appCounts[job.job_id] ?? 0}</td>
+                  <td>{job.application_count}</td>
                   <td>
                     <button
                       className="view-btn"

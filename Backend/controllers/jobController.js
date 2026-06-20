@@ -14,11 +14,26 @@ exports.getJobs = (req, res) => {
 // ─── GET JOBS BY HR ───────────────────────────────────────────
 exports.getJobsByHr = (req, res) => {
   const hr_id = req.user.userid;
+
   db.query(
-    "SELECT *, DATE_FORMAT(created_at, '%Y-%m-%d') AS created_at FROM jobs WHERE hr_id = ? ORDER BY created_at DESC",
+    `SELECT
+        j.*,
+        DATE_FORMAT(j.created_at, '%Y-%m-%d') AS created_at,
+        COUNT(a.appli_id) AS application_count
+     FROM jobs j
+     LEFT JOIN applications a
+     ON j.job_id = a.job_id
+     WHERE j.hr_id = ?
+     GROUP BY j.job_id
+     ORDER BY j.created_at DESC`,
     [hr_id],
     (err, results) => {
-      if (err) return res.status(500).json({ message: "Database error.", error: err });
+      if (err)
+        return res.status(500).json({
+          message: "Database error.",
+          error: err,
+        });
+
       return res.status(200).json(results);
     }
   );
