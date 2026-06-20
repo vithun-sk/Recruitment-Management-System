@@ -4,12 +4,12 @@ import HrNav from "../../components/HrNavbar";
 import "../../Styles/HrApplications.css";
 import { getMyJobs, deleteJob } from "../../Services/api";
 import { getApplicationsByJob } from "../../Services/api";
- 
+
 const HrApplications = () => {
   const navigate = useNavigate();
   const [hrJobs, setHrJobs] = useState([]);
   const [appCounts, setAppCounts] = useState({});
- 
+
   useEffect(() => {
     getMyJobs()
       .then(async (res) => {
@@ -20,7 +20,11 @@ const HrApplications = () => {
           try {
             const appRes = await getApplicationsByJob(job.job_id);
             counts[job.job_id] = appRes.data.length;
-          } catch {
+          } catch (err) {
+            console.log("Error for job", job.job_id);
+            console.log(err.response?.data);
+            console.log(err.response?.status);
+
             counts[job.job_id] = 0;
           }
         }
@@ -28,9 +32,11 @@ const HrApplications = () => {
       })
       .catch(() => alert("Failed to load jobs."));
   }, []);
- 
+
   async function handleDeleteJob(job_id) {
-    const confirmed = window.confirm("Are you sure you want to delete this job?");
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this job?",
+    );
     if (!confirmed) return;
     try {
       await deleteJob(job_id);
@@ -40,7 +46,7 @@ const HrApplications = () => {
       alert(err.response?.data?.message || "Delete failed.");
     }
   }
- 
+
   return (
     <>
       <HrNav />
@@ -67,10 +73,16 @@ const HrApplications = () => {
                   <td>{job.jobtitle}</td>
                   <td>{appCounts[job.job_id] ?? 0}</td>
                   <td>
-                    <button className="view-btn" onClick={() => navigate(`/hr/applications/${job.job_id}`)}>
+                    <button
+                      className="view-btn"
+                      onClick={() => navigate(`/hr/applications/${job.job_id}`)}
+                    >
                       View
                     </button>
-                    <button className="deleteJob-btn" onClick={() => handleDeleteJob(job.job_id)}>
+                    <button
+                      className="deleteJob-btn"
+                      onClick={() => handleDeleteJob(job.job_id)}
+                    >
                       Delete Job
                     </button>
                   </td>
@@ -83,5 +95,5 @@ const HrApplications = () => {
     </>
   );
 };
- 
+
 export default HrApplications;

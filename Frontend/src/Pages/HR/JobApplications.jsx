@@ -129,7 +129,7 @@ const JobApplications = () => {
                   <td className="label"><strong>Resume</strong></td>
                   <td>
                     <a
-                      href={`http://localhost:5000/uploads/${selectedApp.resume_path}`}
+                      href={`${import.meta.env.VITE_API_URL.replace("/api", "")}/uploads/${selectedApp.resume_path}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="resume-anchor-tag"
